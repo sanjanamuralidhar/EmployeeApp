@@ -15,32 +15,15 @@ class _HomePageState extends State<HomePage> {
   var isLoading = false;
 
   @override
+  void initState() {
+    // loadSharedPrefs();
+    _loadFromApi();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Api to sqlite'),
-        centerTitle: true,
-        actions: <Widget>[
-          Container(
-            padding: EdgeInsets.only(right: 10.0),
-            child: IconButton(
-              icon: Icon(Icons.settings_input_antenna),
-              onPressed: () async {
-                await _loadFromApi();
-              },
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(right: 10.0),
-            child: IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: () async {
-                await _deleteData();
-              },
-            ),
-          ),
-        ],
-      ),
       body: isLoading
           ? Center(
               child: CircularProgressIndicator(),
